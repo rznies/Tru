@@ -3,11 +3,13 @@ import Image from "next/image";
 import { useRef } from "react";
 import { useScroll, useTransform } from "motion/react";
 import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
+import { MacbookScrollDemo } from "./components/MacbookScrollDemo";
+import { TextGenerateEffectDemo } from "./components/TextGenerateEffect";
 
 export default function Home() {
-  const ref = useRef(null);
+  const geminiRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: geminiRef,
     offset: ["start start", "end start"],
   });
 
@@ -19,21 +21,35 @@ export default function Home() {
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.65], [0, 1.2]);
 
   return (
-    <div 
-      ref={ref} 
-      className="h-[240vh] w-full bg-black relative overflow-hidden"
-    >
-      <GoogleGeminiEffect 
-        pathLengths={[
-          pathLengthFirst,
-          pathLengthSecond,
-          pathLengthThird,
-          pathLengthFourth,
-          pathLengthFifth,
-        ]} 
-        title="Sales School at ₹0 Cost" 
-        description="Scroll down to see the Gemini animation in action"
-      />
+    <div className="flex flex-col bg-black">
+      {/* First section for Gemini Effect */}
+      <div 
+        ref={geminiRef} 
+        className="h-[140vh] w-full relative overflow-hidden"
+      >
+        <GoogleGeminiEffect 
+          pathLengths={[
+            pathLengthFirst,
+            pathLengthSecond,
+            pathLengthThird,
+            pathLengthFourth,
+            pathLengthFifth,
+          ]} 
+          title="Sales School at ₹0 Cost" 
+          description="Scroll down to see the Gemini animation in action"
+        />
+      </div>
+
+      <div>
+        <TextGenerateEffectDemo />
+      </div>
+      
+      {/* Second section with clear separation for MacbookScroll */}
+      <div className="w-full bg-black">
+        <MacbookScrollDemo />
+      </div>
+
+      
     </div>
   );
 }
