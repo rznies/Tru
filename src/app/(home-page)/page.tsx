@@ -5,7 +5,7 @@ import { useScroll, useTransform } from "motion/react";
 import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
 import { MacbookScrollDemo } from "./components/MacbookScrollDemo";
 import { TextGenerateEffectDemo } from "./components/TextGenerateEffect";
-
+import { BackgroundBoxesDemo } from "./components/BackgroundBoxesDemo";
 export default function Home() {
   const geminiRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -47,6 +47,11 @@ export default function Home() {
       {/* Second section with clear separation for MacbookScroll */}
       <div className="w-full bg-black">
         <MacbookScrollDemo />
+      </div>
+
+      {/* Add spacing and position the BackgroundBoxes at the bottom */}
+      <div className="mt-[120vh] w-full">
+        <BackgroundBoxesDemo />
       </div>
 
       
